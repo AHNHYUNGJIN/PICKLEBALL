@@ -11,7 +11,8 @@
             background-color: #e8e8e8;
             color: #333;
             width: 100vw;
-            height: 75vw; /* 4:3 비율로 설정 */
+            height: 150vw; /* 세로 길이를 2배로 설정 */
+            margin: 0; /* 하얀색 공백 제거 */
         }
         h1 {
             font-size: 1.8em;
@@ -46,13 +47,13 @@
             background: linear-gradient(135deg, #43cea2, #185a9d);
         }
         .score {
-            font-size: 2.5em;
+            font-size: 5em; /* 글자 크기 2배로 증가 */
             font-weight: bold;
             margin: 8px 0;
         }
         button {
-            font-size: 0.7em;
-            padding: 5px 12px;
+            font-size: 1.4em; /* 아이콘 및 버튼 크기 2배로 증가 */
+            padding: 10px 24px;
             margin: 5px;
             border: none;
             border-radius: 5px;
@@ -68,12 +69,12 @@
             transform: scale(0.95);
         }
         .server-indicator {
-            font-size: 0.9em;
+            font-size: 1.8em; /* 글자 크기 2배로 증가 */
             margin-top: 6px;
         }
         .reset-button {
-            font-size: 0.8em;
-            padding: 8px 16px;
+            font-size: 1.6em; /* 아이콘 및 버튼 크기 2배로 증가 */
+            padding: 16px 32px;
             margin-top: 10px;
             border: none;
             border-radius: 10px;
@@ -96,7 +97,7 @@
     <h1>피클볼 스코어보드(화북중학교)</h1>
     <div class="scoreboard">
         <div id="team1" class="team">
-            <input type="text" id="team1-name" value="팀 1" style="font-size: 1.2em; text-align: center; width: 80%; margin-bottom: 10px;">
+            <input type="text" id="team1-name" value="팀 1" style="font-size: 2.4em; text-align: center; width: 80%; margin-bottom: 10px;">
             <div class="score" id="score1">0</div>
             <button onclick="updateScore('team1', 1)">+1</button>
             <button onclick="updateScore('team1', -1)">-1</button>
@@ -104,7 +105,7 @@
             <div class="server-indicator">서버 순서: <span id="server1">0</span></div>
         </div>
         <div id="team2" class="team">
-            <input type="text" id="team2-name" value="팀 2" style="font-size: 1.2em; text-align: center; width: 80%; margin-bottom: 10px;">
+            <input type="text" id="team2-name" value="팀 2" style="font-size: 2.4em; text-align: center; width: 80%; margin-bottom: 10px;">
             <div class="score" id="score2">0</div>
             <button onclick="updateScore('team2', 1)">+1</button>
             <button onclick="updateScore('team2', -1)">-1</button>
