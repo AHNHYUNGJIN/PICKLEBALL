@@ -17,11 +17,11 @@
             justify-content: center;
             height: 100vh;
             overflow: hidden;
-            transform: scale(0.85); /* 화면 축소를 위한 스케일 적용 */
+            transform: scale(0.68); /* 화면 축소를 위한 스케일 적용 (20% 더 축소) */
         }
         h1 {
-            font-size: 2em; /* 제목 크기 축소 */
-            margin: 10px;
+            font-size: 1.8em; /* 제목 크기 축소 */
+            margin: 5px; /* 상하 간격 축소 */
             color: #007acc;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -35,11 +35,11 @@
             background: #ffffff;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            margin: 15px 0;
+            padding: 10px; /* 패딩 축소 */
+            margin: 10px 0; /* 상하 간격 축소 */
         }
         .team {
-            padding: 15px;
+            padding: 10px; /* 패딩 축소 */
             border-radius: 10px;
             width: 40%;
             max-width: 300px;
@@ -52,14 +52,14 @@
             background: linear-gradient(135deg, #43cea2, #185a9d);
         }
         .score {
-            font-size: 3em; /* 글자 크기 축소 */
+            font-size: 2.5em; /* 글자 크기 축소 */
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0; /* 상하 간격 축소 */
         }
         button {
-            font-size: 1em; /* 버튼 크기 축소 */
-            padding: 8px 16px;
-            margin: 8px;
+            font-size: 0.9em; /* 버튼 크기 축소 */
+            padding: 6px 14px; /* 패딩 축소 */
+            margin: 5px; /* 상하 간격 축소 */
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -74,13 +74,13 @@
             transform: scale(0.95);
         }
         .server-indicator {
-            font-size: 1.3em; /* 글자 크기 축소 */
-            margin-top: 10px;
+            font-size: 1.2em; /* 글자 크기 축소 */
+            margin-top: 5px; /* 상하 간격 축소 */
         }
         .reset-button {
-            font-size: 1.2em; /* 버튼 크기 축소 */
-            padding: 12px 24px;
-            margin-top: 15px;
+            font-size: 1em; /* 버튼 크기 축소 */
+            padding: 10px 20px; /* 패딩 축소 */
+            margin-top: 10px; /* 상하 간격 축소 */
             border: none;
             border-radius: 10px;
             background: #ff4b5c;
@@ -102,7 +102,7 @@
     <h1>피클볼 스코어보드(화북중학교)</h1>
     <div class="scoreboard">
         <div id="team1" class="team">
-            <input type="text" id="team1-name" value="팀 1" style="font-size: 1.8em; text-align: center; width: 80%; margin-bottom: 15px;">
+            <input type="text" id="team1-name" value="팀 1" style="font-size: 1.6em; text-align: center; width: 80%; margin-bottom: 10px;">
             <div class="score" id="score1">0</div>
             <button onclick="updateScore('team1', 1)">+1</button>
             <button onclick="updateScore('team1', -1)">-1</button>
@@ -110,7 +110,7 @@
             <div class="server-indicator">서버 순서: <span id="server1">0</span></div>
         </div>
         <div id="team2" class="team">
-            <input type="text" id="team2-name" value="팀 2" style="font-size: 1.8em; text-align: center; width: 80%; margin-bottom: 15px;">
+            <input type="text" id="team2-name" value="팀 2" style="font-size: 1.6em; text-align: center; width: 80%; margin-bottom: 10px;">
             <div class="score" id="score2">0</div>
             <button onclick="updateScore('team2', 1)">+1</button>
             <button onclick="updateScore('team2', -1)">-1</button>
@@ -170,7 +170,3 @@
             }).catch((error) => {
                 console.error('캡처 실패:', error);
             });
-        }
-    </script>
-</body>
-</html>
