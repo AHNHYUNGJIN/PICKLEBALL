@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, orientation=landscape">
     <title>피클볼 스코어보드</title>
     <style>
         body {
@@ -10,13 +10,17 @@
             text-align: center;
             background-color: #e8e8e8;
             color: #333;
-            width: 100vw;
-            height: 150vw; /* 세로 길이를 2배로 설정 */
-            margin: 0; /* 하얀색 공백 제거 */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
         }
         h1 {
-            font-size: 1.8em;
-            margin-top: 3px;
+            font-size: 2.5em;
+            margin: 10px;
             color: #007acc;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -25,19 +29,19 @@
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            margin: 10px auto;
-            padding: 3px;
-            width: 95%;
-            max-width: 800px;
+            width: 90%;
+            max-width: 1200px;
             background: #ffffff;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 20px 0;
         }
         .team {
-            padding: 7px;
+            padding: 20px;
             border-radius: 10px;
-            width: 45%;
-            max-width: 280px;
+            width: 40%;
+            max-width: 400px;
             background: linear-gradient(135deg, #ff7e5f, #feb47b);
             color: #ffffff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
@@ -47,14 +51,14 @@
             background: linear-gradient(135deg, #43cea2, #185a9d);
         }
         .score {
-            font-size: 5em; /* 글자 크기 2배로 증가 */
+            font-size: 4em;
             font-weight: bold;
-            margin: 8px 0;
+            margin: 20px 0;
         }
         button {
-            font-size: 1.4em; /* 아이콘 및 버튼 크기 2배로 증가 */
-            padding: 10px 24px;
-            margin: 5px;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -69,13 +73,13 @@
             transform: scale(0.95);
         }
         .server-indicator {
-            font-size: 1.8em; /* 글자 크기 2배로 증가 */
-            margin-top: 6px;
+            font-size: 1.5em;
+            margin-top: 10px;
         }
         .reset-button {
-            font-size: 1.6em; /* 아이콘 및 버튼 크기 2배로 증가 */
-            padding: 16px 32px;
-            margin-top: 10px;
+            font-size: 1.4em;
+            padding: 15px 30px;
+            margin-top: 20px;
             border: none;
             border-radius: 10px;
             background: #ff4b5c;
@@ -94,10 +98,10 @@
     </style>
 </head>
 <body>
-    <h1 style="font-size: 3.6em;">피클볼 스코어보드(화북중학교)</h1>
+    <h1>피클볼 스코어보드(화북중학교)</h1>
     <div class="scoreboard">
         <div id="team1" class="team">
-            <input type="text" id="team1-name" value="팀 1" style="font-size: 2.4em; text-align: center; width: 80%; margin-bottom: 10px;">
+            <input type="text" id="team1-name" value="팀 1" style="font-size: 2em; text-align: center; width: 80%; margin-bottom: 20px;">
             <div class="score" id="score1">0</div>
             <button onclick="updateScore('team1', 1)">+1</button>
             <button onclick="updateScore('team1', -1)">-1</button>
@@ -105,7 +109,7 @@
             <div class="server-indicator">서버 순서: <span id="server1">0</span></div>
         </div>
         <div id="team2" class="team">
-            <input type="text" id="team2-name" value="팀 2" style="font-size: 2.4em; text-align: center; width: 80%; margin-bottom: 10px;">
+            <input type="text" id="team2-name" value="팀 2" style="font-size: 2em; text-align: center; width: 80%; margin-bottom: 20px;">
             <div class="score" id="score2">0</div>
             <button onclick="updateScore('team2', 1)">+1</button>
             <button onclick="updateScore('team2', -1)">-1</button>
@@ -150,43 +154,22 @@
             document.getElementById('score2').innerText = score2;
         }
 
-function saveAsImage() {
-    const scoreboardElement = document.querySelector('.scoreboard');
-    
-    // 디바이스 종류에 따라 캡처 크기 다르게 설정
-    const screenWidth = window.innerWidth;
-    let width, height;
-
-    if (screenWidth >= 1024) {
-        // PC 화면에서 캡처 크기 설정
-        width = scoreboardElement.offsetWidth;
-        height = scoreboardElement.offsetHeight;
-    } else {
-        // 모바일 화면에서 캡처 크기 설정
-        width = scoreboardElement.offsetWidth;
-        height = scoreboardElement.offsetHeight;
-    }
-
-    // html2canvas 호출
-    html2canvas(scoreboardElement, {
-        x: 0,
-        y: 0,
-        width: width,
-        height: height,
-        scrollX: 0,
-        scrollY: 0,
-        backgroundColor: '#ffffff',  // 배경색 설정
-        logging: true,  // 디버깅 메시지 출력
-        useCORS: true   // CORS 허용
-    }).then(canvas => {
-        let link = document.createElement('a');
-        link.download = 'scoreboard.png';
-        link.href = canvas.toDataURL();
-        link.click();
-    }).catch((error) => {
-        console.error('캡처 실패:', error);
-    });
-}
+        function saveAsImage() {
+            const scoreboardElement = document.querySelector('.scoreboard');
+            
+            html2canvas(scoreboardElement, {
+                backgroundColor: '#ffffff',  // 배경색 설정
+                logging: true,  // 디버깅 메시지 출력
+                useCORS: true   // CORS 허용
+            }).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'scoreboard.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch((error) => {
+                console.error('캡처 실패:', error);
+            });
+        }
     </script>
 </body>
 </html>
