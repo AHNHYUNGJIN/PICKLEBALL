@@ -159,31 +159,32 @@ function saveAsImage() {
 
     if (screenWidth >= 1024) {
         // PC 화면에서 캡처 크기 설정
-        width = scoreboardElement.offsetWidth * 0.7;  // 화면 너비의 70%로 크기 설정
-        height = scoreboardElement.offsetHeight * 0.7;  // 화면 높이의 70%로 크기 설정
+        width = scoreboardElement.offsetWidth;
+        height = scoreboardElement.offsetHeight;
     } else {
         // 모바일 화면에서 캡처 크기 설정
-        width = scoreboardElement.offsetWidth * 0.9;  // 화면 너비의 90%로 크기 설정
-        height = scoreboardElement.offsetHeight * 0.9;  // 화면 높이의 90%로 크기 설정
+        width = scoreboardElement.offsetWidth;
+        height = scoreboardElement.offsetHeight;
     }
 
-    // 캡처할 영역의 중앙 정렬을 위한 좌표 계산
-    const x = (window.innerWidth - width) / 2;  // 화면 너비에서 캡처할 영역의 너비를 빼고 2로 나눠서 중앙 정렬
-    const y = (window.innerHeight - height) / 2;  // 화면 높이에서 캡처할 영역의 높이를 빼고 2로 나누어 중앙 정렬
-
-    // html2canvas로 캡처하기
+    // html2canvas 호출
     html2canvas(scoreboardElement, {
-        x: x, // 캡처 영역의 X 위치
-        y: y, // 캡처 영역의 Y 위치
-        width: width,  // 캡처할 영역의 너비
-        height: height,  // 캡처할 영역의 높이
+        x: 0,
+        y: 0,
+        width: width,
+        height: height,
         scrollX: 0,
-        scrollY: 0
+        scrollY: 0,
+        backgroundColor: '#ffffff',  // 배경색 설정
+        logging: true,  // 디버깅 메시지 출력
+        useCORS: true   // CORS 허용
     }).then(canvas => {
         let link = document.createElement('a');
-        link.download = 'scoreboard.png';  // 다운로드할 파일 이름 설정
-        link.href = canvas.toDataURL();  // 캔버스 데이터를 URL로 변환
-        link.click();  // 링크 클릭하여 다운로드
+        link.download = 'scoreboard.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    }).catch((error) => {
+        console.error('캡처 실패:', error);
     });
 }
     </script>
