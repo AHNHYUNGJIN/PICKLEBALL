@@ -14,7 +14,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             overflow: hidden;
         }
@@ -160,15 +160,26 @@
 
         function saveAsImage() {
             const scoreboardElement = document.querySelector('.scoreboard');
+            window.scrollTo(0, 0); // 화면 최상단으로 스크롤
             
             html2canvas(scoreboardElement, {
                 backgroundColor: '#ffffff',  // 배경색 설정
                 logging: true,  // 디버깅 메시지 출력
                 useCORS: true   // CORS 허용
             }).then(canvas => {
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                const extendedCanvas = document.createElement('canvas');
+                extendedCanvas.width = canvasWidth;
+                extendedCanvas.height = canvasHeight * 1.6; // 위로 20%, 아래로 40% 더 넓은 영역 설정
+                const ctx = extendedCanvas.getContext('2d');
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, extendedCanvas.width, extendedCanvas.height);
+                ctx.drawImage(canvas, 0, canvasHeight * 0.2);
+
                 let link = document.createElement('a');
                 link.download = 'scoreboard.png';
-                link.href = canvas.toDataURL();
+                link.href = extendedCanvas.toDataURL();
                 link.click();
             }).catch((error) => {
                 console.error('캡처 실패:', error);
