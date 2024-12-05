@@ -159,13 +159,13 @@ function saveAsImage() {
     
     if (screenWidth >= 1024) {
         // PC 화면
-        width = screenWidth * 0.7;  // 화면 너비의 70%로 설정
+        width = screenWidth * 0.5;  // 화면 너비의 70%로 설정
     } else if (screenWidth >= 768) {
         // 태블릿 화면
-        width = screenWidth * 0.85;  // 화면 너비의 85%로 설정
+        width = screenWidth * 0.65;  // 화면 너비의 85%로 설정
     } else {
         // 모바일 화면
-        width = screenWidth * 0.95;  // 화면 너비의 95%로 설정
+        width = screenWidth * 0.75;  // 화면 너비의 95%로 설정
     }
 
     // 높이는 너비 비율에 맞추어 계산
