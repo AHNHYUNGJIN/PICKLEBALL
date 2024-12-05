@@ -153,15 +153,30 @@
 function saveAsImage() {
     const scoreboardElement = document.querySelector('.scoreboard');
     
-    // 화면 크기에 맞게 캔버스 크기를 조정
-    const width = window.innerWidth * 0.8; // 화면 너비의 80%로 설정
-    const height = scoreboardElement.offsetHeight * (width / scoreboardElement.offsetWidth); // 비율 맞추기
+    // 디바이스 종류에 따라 크기 다르게 설정
+    let width, height;
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth >= 1024) {
+        // PC 화면
+        width = screenWidth * 0.7;  // 화면 너비의 70%로 설정
+    } else if (screenWidth >= 768) {
+        // 태블릿 화면
+        width = screenWidth * 0.85;  // 화면 너비의 85%로 설정
+    } else {
+        // 모바일 화면
+        width = screenWidth * 0.95;  // 화면 너비의 95%로 설정
+    }
 
+    // 높이는 너비 비율에 맞추어 계산
+    height = scoreboardElement.offsetHeight * (width / scoreboardElement.offsetWidth);
+
+    // html2canvas를 사용하여 화면 크기에 맞게 캔버스 생성
     html2canvas(scoreboardElement, {
-        scale: 2, // 해상도 높이기
-        width: width,  // 동적으로 너비 설정
-        height: height, // 동적으로 높이 설정
-        useCORS: true, // CORS 문제 방지
+        scale: 2,  // 해상도를 높여 선명도 유지
+        width: width,  // 설정된 너비
+        height: height, // 설정된 높이
+        useCORS: true,  // CORS 문제 방지
     }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'scoreboard.png';
