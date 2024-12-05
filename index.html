@@ -150,14 +150,20 @@
             document.getElementById('score2').innerText = score2;
         }
 
-        function saveAsImage() {
-            html2canvas(document.querySelector('.scoreboard')).then(canvas => {
-                let link = document.createElement('a');
-                link.download = 'scoreboard.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        }
+function saveAsImage() {
+    const scoreboardElement = document.querySelector('.scoreboard');
+    html2canvas(scoreboardElement, {
+        scale: 1, // 이미지 해상도를 낮추어 크기 최적화
+        width: scoreboardElement.offsetWidth, // 실제 너비 사용
+        height: scoreboardElement.offsetHeight, // 실제 높이 사용
+        useCORS: true // CORS 문제 방지
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'scoreboard.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
     </script>
 </body>
 </html>
